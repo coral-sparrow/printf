@@ -153,10 +153,12 @@ int concat_slice(buff *b, const char *str, int start, int end)
  */
 int _printf(const char *format, ...)
 {
-	int n = 0, i, *idx;
+	int n = 0, len, i, *idx;
 	va_list ap;
 	buff b;
 
+	if (!format)
+		return (0);
 	va_start(ap, format);
 	n = get_specifier(format);
 	idx = get_specidx(format, ++n);
@@ -188,8 +190,7 @@ int _printf(const char *format, ...)
 			(tmp != '%') ? concat_slice(&b, format, idx[i],  idx[i + 1]) :
 				(concat_slice(&b, format, idx[i],  idx[i + 2]), i++);
 	}
-
 	va_end(ap);
-	write(1, b.s, _strlen(b.s));
-	return (0);
+	len = write(1, b.s, _strlen(b.s));
+	return (len);
 }
