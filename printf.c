@@ -165,7 +165,7 @@ int _printf(const char *format, ...)
 	for (i = 0; i < n; i++)
 	{
 		char tmp = format[idx[i] + 1], tmp_c, *tmp_s;
-
+		int tmp_d;
 		if((tmp == 'c') || (tmp == '%'))
 		{
 			tmp_c = (tmp == 'c') ? (va_arg(ap, int)) : '%';
@@ -174,8 +174,11 @@ int _printf(const char *format, ...)
 		{
 			tmp_s = va_arg(ap, char *);
 			concat_buff(&b, tmp_s, 0);
+		} else if (tmp == 'd') || (tmp == 'i'))
+		{
+			tmp_d = (tmp == 'd') ? (va_arg(ap, int)) : (va_arg(ap, unsigned int))
+			concat_buff(&b, &tmp_d, 1);
 		}
-
 		if ((i + 1) != n)
 			(tmp != '%') ? concat_slice(&b, format, idx[i],  idx[i + 1]) :
 				(concat_slice(&b, format, idx[i],  idx[i + 2]), i++);
