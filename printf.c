@@ -181,12 +181,12 @@ int _printf(const char *format, ...)
 			concat_buff(&b, &tmp_d, 1);
 		} */
 		if ((i + 1) != n)
-			if (!unk)
-				(tmp != '%') ? concat_slice(&b, format, idx[i],  idx[i + 1]) :
+			if (unk)
+				(tmp != '%') ? concat_slice(&b, format, idx[i] - 2,  idx[i + 1]) :
 					(concat_slice(&b, format, idx[i],  idx[i + 2]), i++);
 			else
-				(tmp != '%') ? concat_slice(&b, format, idx[i] - 2,  idx[i + 1]) :
-				(concat_slice(&b, format, idx[i],  idx[i + 2]), i++);
+				(tmp != '%') ? concat_slice(&b, format, idx[i],  idx[i + 1]) :
+			(concat_slice(&b, format, idx[i],  idx[i + 2]), i++);
 	}
 	va_end(ap);
 	len = write(1, b.s, _strlen(b.s));
