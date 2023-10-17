@@ -165,7 +165,7 @@ int _printf(const char *format, ...)
 	for (i = 0; i < n; i++)
 	{
 		char tmp = format[idx[i] + 1], tmp_c, *tmp_s;
-		int tmp_d;
+		
 		if((tmp == 'c') || (tmp == '%'))
 		{
 			tmp_c = (tmp == 'c') ? (va_arg(ap, int)) : '%';
