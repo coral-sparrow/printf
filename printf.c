@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 
 /**
@@ -166,7 +165,6 @@ int _printf(const char *format, ...)
 	for (i = 0; i < n; i++)
 	{
 		char tmp = format[idx[i] + 1], tmp_c, *tmp_s;
-		int is_char;
 
 		if((tmp == 'c') || (tmp == '%'))
 		{
