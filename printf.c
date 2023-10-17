@@ -165,27 +165,19 @@ int _printf(const char *format, ...)
 	init_buff(format, &b, idx[0]);
 	for (i = 0; i < n; i++)
 	{
-		char tmp = format[idx[i] + 1], tmp_c, tmp_p;
-		char *tmp_s;
+		char tmp = format[idx[i] + 1], tmp_c, *tmp_s;
+		int is_char;
 
-		switch (tmp)
+		if((tmp == 'c') || (tmp == '%'))
 		{
-			case 'c':
-				tmp_c = va_arg(ap, int);
-				if (tmp_c)
-					concat_buff(&b, &tmp_c, 1);
-				break;
-
-			case '%':
-				tmp_p = '%';
-				concat_buff(&b, &tmp_p, 1);
-				break;
-			case 's':
-				tmp_s = va_arg(ap, char *);
-				if (tmp_s)
-					concat_buff(&b, tmp_s, 0);
-				break;
+			tmp_c = (tmp == 'c') ? (va_arg(ap, int)) : '%';
+			concat_buff(&b, &tmp_c, 1);
+		} else if ( tmp == 's')
+		{
+			tmp_s = va_arg(ap, char *);
+			concat_buff(&b, tmp_s, 0);
 		}
+
 		if ((i + 1) != n)
 			(tmp != '%') ? concat_slice(&b, format, idx[i],  idx[i + 1]) :
 				(concat_slice(&b, format, idx[i],  idx[i + 2]), i++);
