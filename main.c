@@ -11,10 +11,10 @@ int main(void)
 {
 	int len, len2;
 
-	len = _printf("%c", '\0');
-	_printf("%c", '\0');
-	len2 = printf("%c", '\0');
-	printf("%c", '\0');
+	len = _printf("%");
+	_printf("%");
+	len2 = printf("%");
+	printf("%");
 	printf("my len is: %d, len2 is: %d\n", len, len2);
 	fflush(stdout);
 	if (len != len2)

@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 
 /**
@@ -121,9 +122,9 @@ int concat_slice(buff *b, const char *str, int start, int end)
 	char *s;
 
 	if (!b || !str)
-		return (0);
+		return (-1);
 	if (start >= end)
-		return (0);
+		return (-1);
 
 	l1 = _strlen(b->s);
 	l2 = end - start;
@@ -132,7 +133,7 @@ int concat_slice(buff *b, const char *str, int start, int end)
 	s = malloc(sizeof(char) * lt);
 
 	if (!s)
-		return (0);
+		return (-1);
 	i = 0;
 	j = start;
 
@@ -161,7 +162,7 @@ int concat_slice(buff *b, const char *str, int start, int end)
  */
 int _printf(const char *format, ...)
 {
-	int n = 0, len, i, *idx, flen = c_strlen(format);
+	int n = 0, len, i, final, *idx, flen = c_strlen(format);
 	va_list ap;
 	buff b;
 
@@ -198,14 +199,15 @@ int _printf(const char *format, ...)
 		} else
 		{
 			if (unk && (tmp != '\0'))
-				concat_slice(&b, format, idx[i], flen);
+				final = concat_slice(&b, format, idx[i], flen);
 			else if (unk)
-				concat_slice(&b, format, idx[i] + 1, flen);
+				final = concat_slice(&b, format, idx[i] + 1, flen);
 			else
-				concat_slice(&b, format, idx[i] + 2, flen);
+				final = concat_slice(&b, format, idx[i] + 2, flen);
 		}
 	}
 	va_end(ap);
-	len = write(1, b.s, _strlen(b.s));
+	printf("final is %d\n", final);
+	len = (final > 0) ? write(1, b.s, _strlen(b.s)) : final;
 	return ((len == 0) ? 1 : len);
 }
