@@ -166,7 +166,7 @@ int _printf(const char *format, ...)
 	buff b;
 
 	if (format == NULL)
-		return (0);
+		return (-1);
 	va_start(ap, format);
 	n = get_specifier(format);
 	idx = get_specidx(format, n);
