@@ -207,5 +207,5 @@ int _printf(const char *format, ...)
 	}
 	va_end(ap);
 	len = write(1, b.s, _strlen(b.s));
-	return (len);
+	return (len + 1);
 }
