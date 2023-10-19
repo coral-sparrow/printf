@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 
 /**
@@ -207,7 +206,6 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(ap);
-	printf("final is %d\n", final);
 	len = (final > 0) ? write(1, b.s, _strlen(b.s)) : final;
 	return ((len == 0) ? 1 : len);
 }
