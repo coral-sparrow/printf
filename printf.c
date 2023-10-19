@@ -165,13 +165,13 @@ int _printf(const char *format, ...)
 	va_list ap;
 	buff b;
 
-	if (!format)
+	if (format == NULL)
 		return (0);
 	va_start(ap, format);
 	n = get_specifier(format);
 	idx = get_specidx(format, n);
 	if (!idx)
-		return (0);
+		return (-1);
 	init_buff(format, &b, idx[0], n);
 	for (i = 0; i < n; i++)
 	{
