@@ -193,9 +193,9 @@ int _printf(const char *format, ...)
 		if ((i + 1) != n)
 		{
 			if (unk)
-				concat_slice(&b, format, idx[i], idx[i + 1]);
+				final = concat_slice(&b, format, idx[i], idx[i + 1]);
 			else
-				concat_slice(&b, format, idx[i] + 2, idx[i + 1]);
+				final = concat_slice(&b, format, idx[i] + 2, idx[i + 1]);
 		} else
 		{
 			if (unk && (tmp != '\0'))
