@@ -204,29 +204,6 @@ int _printf(const char *format, ...)
 				concat_slice(&b, format, idx[i] + 1, flen);
 			else
 				concat_slice(&b, format, idx[i] + 2, flen);
-=======
-		if((tmp == 'c') || (tmp == '%'))
-		{
-			tmp_c = (tmp == 'c') ? (va_arg(ap, int)) : '%';
-			concat_buff(&b, &tmp_c, 1);
-		} else if ( tmp == 's')
-		{
-			tmp_s = va_arg(ap, char *);
-			concat_buff(&b, tmp_s, 0);
-		} /* else if (tmp == 'd') || (tmp == 'i'))
-		{
-			tmp_d = (tmp == 'd') ? (va_arg(ap, int)) : (va_arg(ap, unsigned int))
-			concat_buff(&b, &tmp_d, 1);
-		} */
-		if ((i + 1) != n)
-		{
-			if (unk)
-				(tmp != '%') ? concat_slice(&b, format, idx[i] - 2,  idx[i + 1]) :
-					(concat_slice(&b, format, idx[i],  idx[i + 2]), i++);
-			else
-				(tmp != '%') ? concat_slice(&b, format, idx[i],  idx[i + 1]) :
-			(concat_slice(&b, format, idx[i],  idx[i + 2]), i++);
->>>>>>> d98c97a9b4c4a4326a21058fa1ecb266d4e87712
 		}
 	}
 	va_end(ap);
