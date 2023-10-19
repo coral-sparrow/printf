@@ -9,6 +9,7 @@
  */
 int main(void)
 {
+
     int len;
     int len2;
     unsigned int ui;
@@ -30,8 +31,10 @@ int main(void)
     printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
     _printf("Character:[%c]\n", 'H');
     printf("Character:[%c]\n", 'H');
+
     _printf("String:[%s]\n", "I am a string !");
     printf("String:[%s]\n", "I am a string !");
+ 
     _printf("Address:[%p]\n", addr);
     printf("Address:[%p]\n", addr);
     len = _printf("Percent:[%%]\n");
@@ -40,5 +43,20 @@ int main(void)
     printf("Len:[%d]\n", len2);
     _printf("Unknown:[%r]\n");
     printf("Unknown:[%r]\n");
+    _printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
+    printf("Complete the sentence: You %s nothing, Jon Snow.\n", (char *)0);
+    _printf("%K\n");
+    printf("%K\n");
+
+    _printf("%!\n");
+    printf("%!\n");
+    _printf("%");
+    printf("%");
+  /*
+    _printf("%");
+
+    _printf("Percent:[%%]\n");
+    printf("Percent:[%%]\n");
+*/
     return (0);
 }

@@ -23,7 +23,8 @@ int concat_buff(buff *b, char *new_s, int is_char);
 int *get_specidx(const char *format, int n);
 int get_specifier(const char *format);
 int _strlen(char *s);
-void init_buff(const char *s, buff *b, int len);
+int c_strlen(const char *s);
+void init_buff(const char *s, buff *b, int len, int n);
 
 
 
