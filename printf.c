@@ -178,7 +178,6 @@ int _printf(const char *format, ...)
 		char tmp = format[idx[i] + 1], tmp_c, *tmp_s;
 		int unk = 0;
 
-<<<<<<< HEAD
 		if ((tmp == 'c') || (tmp == '%'))
 		{
 			tmp_c = (tmp == 'c') ? (va_arg(ap, int)) : '%';
